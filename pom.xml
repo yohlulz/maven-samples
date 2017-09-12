@@ -5,13 +5,19 @@
 	<groupId>com.tora</groupId>
 	<artifactId>train</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-
 	<packaging>pom</packaging>
 	<name>sample_per_day</name>
 
 	<prerequisites>
 		<maven>3.0.3</maven>
 	</prerequisites>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<jacoco-version>0.7.9</jacoco-version>
+	</properties>
 
 	<!-- common dependencies for all modules -->
 	<dependencies>
@@ -76,10 +82,36 @@
 		</dependency>
 	</dependencies>
 
-
 	<modules>
 		<module>day1</module>
+		<module>day2</module>
+		<module>report</module>
 		<!-- add here any other modules -->
 	</modules>
+
+	<profiles>
+		<profile>
+			<id>jacoco</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.jacoco</groupId>
+						<artifactId>jacoco-maven-plugin</artifactId>
+						<version>${jacoco-version}</version>
+						<executions>
+							<execution>
+								<goals>
+									<goal>prepare-agent</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 
 </project>
