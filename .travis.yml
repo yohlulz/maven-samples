@@ -2,15 +2,15 @@ language: java
 sudo: false
 jdk:  
  - oraclejdk8
-before_install:  
- - curl -sL https://github.com/jpm4j/jpm4j.installers/raw/master/dist/biz.aQute.jpm.run.jar >jpm4j.jar
- - java -jar jpm4j.jar -u init
- - ~/jpm/bin/jpm install com.codacy:codacy-coverage-reporter:assembly
+
+before_install:
+  - sudo apt-get install jq
+  - wget -O ~/codacy-coverage-reporter-assembly-latest.jar $(curl https://api.github.com/repos/codacy/codacy-coverage-reporter/releases/latest | jq -r .assets[0].browser_download_url)
+after_success:
+  - java -cp ~/codacy-coverage-reporter-assembly-latest.jar com.codacy.CodacyCoverageReporter -l Java -r report/target/site/jacoco-aggregate/jacoco.xml
 install: true
 cache:
  directories:
  - $HOME/.m2 
 script:  
  ./mvn verify -P jacoco
-after_success:  
- - ~/jpm/bin/codacy-coverage-reporter -l Java -r report/target/site/jacoco/jacoco.xml
