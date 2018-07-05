@@ -7,6 +7,7 @@ This repository is intented as an example of how a multi-module Maven project ca
 * **[Travis CI](https://travis-ci.org/ "Travis CI")** - (Wikipedia)
 > hosted, distributed continuous integration service used to build and test software projects hosted at GitHubhosted, distributed continuous integration service used to build and test software projects hosted at GitHub
 
+
 Both Travis CI and Codacy are integrated with GitHub.
 
 #### Codacy integration
